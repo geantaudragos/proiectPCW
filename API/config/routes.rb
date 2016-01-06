@@ -1,4 +1,28 @@
 Rails.application.routes.draw do
+
+    scope module: 'api' do
+      namespace :v1 do
+
+        resources :user do
+          collection do
+            post 'login'
+            get 'data', to: "users#get_data"
+            get 'locations', to: "users#get_locations"
+            post 'locations', to: "users#save_locations"
+            get 'photos', to: "users#get_locations"
+            post 'photos', to: "users#save_locations"
+            get 'most_traveled_period', to: "users#most_traveled_period"
+            get 'most_visited_place', to: "users#most_visited_place"
+            get 'top_travel_partners', to: "users#top_travel_partners"
+          end
+        end
+      end
+    end
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
