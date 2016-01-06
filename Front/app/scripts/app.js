@@ -17,13 +17,10 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'uiGmapgoogle-maps'
+    'ngMap'
   ])
-  .config(['uiGmapGoogleMapApiProvider', '$routProvider',
-          function ($routeProvider, GoogleMapApiProviders) {
-            GoogleMapApiProviders.configure({
-              china: true
-            });
+  .config(['$routeProvider',
+          function ($routeProvider) {
 
             $routeProvider
               .when('/', {
