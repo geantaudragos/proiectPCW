@@ -2,34 +2,63 @@
 
 /**
  * @ngdoc overview
- * @name proiectPcwapiApp
+ * @name travelFrontApp
  * @description
- * # proiectPcwapiApp
+ * # travelFrontApp
  *
  * Main module of the application.
  */
+
 angular
-  .module('proiectPcwapiApp', [
+  .module('travelDiary', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'uiGmapgoogle-maps'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+  .config(['uiGmapGoogleMapApiProvider', '$routProvider',
+          function ($routeProvider, GoogleMapApiProviders) {
+            GoogleMapApiProviders.configure({
+              china: true
+            });
+
+            $routeProvider
+              .when('/', {
+                templateUrl: 'views/main.html',
+                controller: 'MainCtrl',
+                controllerAs: 'main'
+              })
+              .when('/about', {
+                templateUrl: 'views/about.html',
+                controller: 'AboutCtrl',
+                controllerAs: 'about'
+              })
+              .when('/dashboard', {
+                templateUrl: 'views/dashboard.html',
+                controller: 'DashboardCtrl',
+                controllerAs: 'dashboard'
+              })
+              .otherwise({
+                redirectTo: '/'
+              });
+  }])
+  .run(['$rootScope', '$location','$cookieStore','$http',
+        function($rootScope, $location, $cookieStore, $http){
+          $rootScope.$on('$locationChangeStart', function(event){
+            switch($location.$$path) {
+              case '/':
+                    $rootScope.background = 'cover main';
+                    break;
+              case '/dashboard':
+                    $rootScope.background = 'cover map';
+                    break;
+              default:
+                    $rootScope.background = 'cover main';
+            }
+            $rootScope.myLocation = $location.$$path;
+            console.log($location.$$path);
+          });
+        }]);
