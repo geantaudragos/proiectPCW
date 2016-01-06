@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Oracle - orcl@192.168.1.4" uuid="a045fcdb-09a4-4473-8a77-23a6340e2d8c">
+      <secret-storage>master_key</secret-storage>
+      <user-name>dragos</user-name>
+      <schema-pattern>*.DRAGOS *.SYS *.SYSTEM</schema-pattern>
+      <default-schemas>*.DRAGOS *.SYS *.SYSTEM</default-schemas>
+    </data-source>
+  </component>
+</project>
