@@ -50,12 +50,12 @@ angular
                     $rootScope.background = 'cover main';
                     break;
               case '/dashboard':
-                    $rootScope.background = 'cover map';
+                    $rootScope.background = 'full-screen';
                     break;
               default:
                     $rootScope.background = 'cover main';
             }
-            $rootScope.myLocation = $location.$$path;
-            console.log($location.$$path);
+
+
           });
         }]);
