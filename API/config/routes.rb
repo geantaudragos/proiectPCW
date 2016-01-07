@@ -6,20 +6,19 @@ Rails.application.routes.draw do
         resources :user do
           collection do
             post 'login'
-            get 'data', to: "users#get_data"
-            get 'locations', to: "users#get_locations"
-            post 'locations', to: "users#save_locations"
-            get 'photos', to: "users#get_locations"
-            post 'photos', to: "users#save_locations"
-            get 'most_traveled_period', to: "users#most_traveled_period"
-            get 'most_visited_place', to: "users#most_visited_place"
-            get 'top_travel_partners', to: "users#top_travel_partners"
           end
+          get 'data', to: "users#get_data"
+          get 'locations', to: "users#get_locations"
+          post 'locations', to: "users#save_locations"
+          get 'photos', to: "users#get_photos"
+          post 'photos', to: "users#save_photos"
+          get 'most_traveled_period', to: "users#get_most_traveled_period"
+          get 'most_visited_places', to: "users#get_most_visited_places"
+          get 'most_visited_cities', to: "users#get_most_visited_cities"
+          get 'top_travel_partners', to: "users#get_top_travel_partners"
         end
       end
     end
-
-
 
 
 
