@@ -6,12 +6,16 @@ angular.module('travelDiary')
     function($scope, NgMap, timeout, StreetView, $http){
       var vm = this;
       vm.locations = [];
+      var locations = [];
 
-
-      $scope.center = "[40.74, -74.18]";
+      $scope.toggleModal = function(){
+        $scope.showModal = !$scope.showModal;
+        console.log($scope.showModal);
+      };
+      $scope.showPinDetails = false;
       NgMap.getMap().then(function(map){
         vm.map = map;
-        var locations = [];
+
         $http.get('https://spreadsheets.google.com/feeds/list/1yfhNvvL53M0IoipZUn4cwReUe68XiBklztZX0NhiQHM/1/public/basic?alt=json-in-script&callback=JSON_CALLBACK')
           .then(function(response){
 
@@ -37,11 +41,25 @@ angular.module('travelDiary')
               place.position = new google.maps.LatLng(location.latitude, location.longitude);
               place.title    = place.name;
               var marker     = new google.maps.Marker(place);
+              marker.addListener('click', function(){
+                //$scope.showPinDetails = !$scope.showPinDetails;
+                console.log($scope.showPinDetails);
+                $('#myModal').modal('show');
+
+              });
               vm.locations.push(marker);
             });
 
             vm.markerClusterer = new MarkerClusterer(map, vm.locations, {});
+            console.log(vm.markerClusterer);
+            console.log(vm);
+            $scope.getLocationsOnSpecificDate = function(year, month, day){
+              console.log('i am here');
+              vm.markerClusterer.fitMapToMarkers();
+            };
           });
+
+
       });
   }]);
 
