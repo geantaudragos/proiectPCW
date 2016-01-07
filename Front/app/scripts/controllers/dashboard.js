@@ -36,16 +36,25 @@ angular.module('travelDiary')
               });
             });
 
+
+            /** Adding markers on the map
+             * Adding event listeners on every marker
+             */
             angular.forEach(locations, function(location, key){
               var place = location;
               place.position = new google.maps.LatLng(location.latitude, location.longitude);
               place.title    = place.name;
               var marker     = new google.maps.Marker(place);
               marker.addListener('click', function(){
-                //$scope.showPinDetails = !$scope.showPinDetails;
-                console.log($scope.showPinDetails);
-                $('#myModal').modal('show');
+                var detailsModal = $('#myModal');
+                var title = detailsModal.find('.modal-title');
+                var body = detailsModal.find('.modal-body');
 
+                title.append(marker.title);
+                body.append(marker.name);
+                body.append(marker.longitude);
+                body.append(marker.latitude);
+                detailsModal.modal('show');
               });
               vm.locations.push(marker);
             });
