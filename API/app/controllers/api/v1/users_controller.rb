@@ -2,9 +2,21 @@ module API::V1
   class UsersController < ApplicationController
 
     def login
-      params
+      user = User.find_by_uid(params[:userParams][:id])
+      if user.nil?
+        user = User.new
+        user.provider = "facebook"
+        user.uid = params[:userParams][:id]
+        user.email = params[:userParams][:email]
+        user.name = params[:userParams][:name]
+        user.hometown = params[:userParams][:hometown][:name].split(',').first
+        user.oauth_token = params[:loginParams][:accessToken]
+        user.save!
+      end
 
-      render :json => {:id => "10001"}
+      locations = Location.where("user_id = ?", user.id).count
+
+      render :json => {:id => user.id, :name => user.name, :locations => locations}
     end
 
     def get_data
@@ -22,7 +34,26 @@ module API::V1
     end
 
     def save_locations
+      recivedData = params[:data]
+      location_array = []
+      recivedData.each do |data|
+        place = data.last[:place]
+        if place[:location][:longitude] and place[:location][:latitude]
+          location = Location.new
+          location.name = place[:name]
+          location.longitude = place[:location][:longitude]
+          location.latitude = place[:location][:latitude]
+          location.city = place[:location][:city]
+          location.visited_at = DateTime.parse(data.last[:created_time])
+          location.user_id = params[:user_id]
+          location_array << location
+        end
 
+      end
+
+      Location.import location_array
+
+      render :json => {:status => 'succes'}
     end
 
     def get_locations
