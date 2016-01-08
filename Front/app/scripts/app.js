@@ -89,6 +89,7 @@ angular
             switch($location.$$path) {
               case '/':
                     $rootScope.background = 'cover main';
+                    $rootScope.home = 'active';
                     break;
               case '/dashboard':
                     $rootScope.background = 'full-screen';
