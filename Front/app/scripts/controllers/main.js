@@ -8,7 +8,50 @@
  * Controller of the travelDiary
  */
 angular.module('travelDiary')
-  .controller('MainCtrl', function ($scope, $rootScope) {
+  .controller('MainCtrl', function ($scope, $rootScope, $http, $location, Facebook) {
+    $scope.something='sdada';
+    $scope.login = function() {
+      console.log('wqdw');
+      // From now on you can use the Facebook service just as Facebook api says
+      Facebook.login(function(response) {
+          var accesToken = response.authResponse.accessToken;
+          Facebook.api(
+            '/me?fields=email,name',
+            'GET',
+            {access_token:accesToken},
+            function(response) {
+              $.post("http://api.localhost:3000/v1/user/login", response, function(data){
+                  console.log(data);
+                  $location.path('/dashboard');
+              });
+              console.log(response);
+            }
+          );
+
+
+
+      },
+        {scope: 'email, user_hometown, user_photos, user_tagged_places'});
+    };
+
+    $scope.getLoginStatus = function() {
+      Facebook.getLoginStatus(function(response) {
+        if(response.status === 'connected') {
+          $scope.loggedIn = true;
+        } else {
+          $scope.loggedIn = false;
+        }
+      });
+    };
+
+    $scope.me = function() {
+      Facebook.api('/me', function (response) {
+        $scope.user = response;
+      });
+    };
+
+
+
     $rootScope.canvas = '.cover .main';
     $scope.details = [
       {
