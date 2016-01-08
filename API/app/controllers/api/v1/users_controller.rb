@@ -2,9 +2,19 @@ module API::V1
   class UsersController < ApplicationController
 
     def login
-      params
+      user = User.find_by_uid(params[:userParams][:id])
+      if user.nil?
+        user = User.new
+        user.provider = "facebook"
+        user.uid = params[:userParams][:id]
+        user.email = params[:userParams][:email]
+        user.name = params[:userParams][:name]
+        user.hometown = params[:userParams][:hometown][:name].split(',').first
+        user.oauth_token = params[:loginParams][:accessToken]
+        user.save!
+      end
 
-      render :json => {:id => "10001"}
+      render :json => {:id => user.id, :name => user.name}
     end
 
     def get_data

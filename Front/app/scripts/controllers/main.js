@@ -14,17 +14,18 @@ angular.module('travelDiary')
       console.log('wqdw');
       // From now on you can use the Facebook service just as Facebook api says
       Facebook.login(function(response) {
-          var accesToken = response.authResponse.accessToken;
+          var loginParams = response.authResponse;
+          var accesToken = loginParams.accessToken;
           Facebook.api(
-            '/me?fields=email,name',
+            '/me?fields=email,name,hometown',
             'GET',
             {access_token:accesToken},
             function(response) {
-              $.post("http://api.localhost:3000/v1/user/login", response, function(data){
-                  console.log(data);
+              var userParams = response;
+              $.post("http://api.localhost:3000/v1/user/login", {'loginParams' : loginParams, 'userParams' : userParams}, function(data){
                   $location.path('/dashboard');
+                console.log(data);
               });
-              console.log(response);
             }
           );
 
