@@ -8,31 +8,50 @@
  * Controller of the travelDiary
  */
 angular.module('travelDiary')
-  .controller('MainCtrl', function ($scope, $rootScope, $http, $location, Facebook) {
-    $scope.something='sdada';
-    $scope.login = function() {
-      console.log('wqdw');
-      // From now on you can use the Facebook service just as Facebook api says
-      Facebook.login(function(response) {
-          var accesToken = response.authResponse.accessToken;
-          Facebook.api(
-            '/me?fields=email,name',
-            'GET',
-            {access_token:accesToken},
-            function(response) {
-              $.post("http://api.localhost:3000/v1/user/login", response, function(data){
-                  console.log(data);
-                  $location.path('/dashboard');
-              });
-              console.log(response);
-            }
-          );
-
-
-
-      },
-        {scope: 'email, user_hometown, user_photos, user_tagged_places'});
+  .controller('MainCtrl', function ($scope, $rootScope, $http, $location, Facebook, $timeout, AuthenticationService) {
+    $rootScope.user = {
+      name : 'User'
     };
+
+
+    $scope.facebookLogin = function () {
+      AuthenticationService.facebookLogin()
+        .then(function(result){
+          $scope.userInfo = result;
+            $scope.toggleModal();
+          $timeout(function() {
+            $location.path("/dashboard");
+          }, 1000);
+          },
+         function(error) {
+              $window.alert("Invalid credentials");
+              console.log("error");
+      });
+    };
+    //
+    //$scope.login = function() {
+    //
+    //  // From now on you can use the Facebook service just as Facebook api says
+    //  Facebook.login(function(response) {
+    //      var accesToken = response.authResponse.accessToken;
+    //      Facebook.api(
+    //        '/me?fields=email,name',
+    //        'GET',
+    //        {access_token:accesToken},
+    //        function(response) {
+    //          $.post("http://api.localhost:3000/v1/user/login", response, function(data){
+    //              console.log(data);
+    //              $location.path('/dashboard');
+    //          });
+    //          console.log(response);
+    //        }
+    //      );
+    //
+    //
+    //
+    //  },
+    //    {scope: 'email, user_hometown, user_photos, user_tagged_places'});
+    //};
 
     $scope.getLoginStatus = function() {
       Facebook.getLoginStatus(function(response) {

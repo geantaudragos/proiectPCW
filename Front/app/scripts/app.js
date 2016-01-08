@@ -37,7 +37,18 @@ angular
               .when('/dashboard', {
                 templateUrl: 'views/dashboard.html',
                 controller: 'DashboardCtrl',
-                controllerAs: 'dashboard'
+                controllerAs: 'dashboard',
+                resolve : {
+                  auth: ["$q", "AuthenticationService", function($q, AuthenticationService) {
+                    var userInfo = AuthenticationService.getUserInfo();
+
+                    if (userInfo) {
+                      return $q.when(userInfo);
+                    } else {
+                      return $q.reject({ authenticated: false });
+                    }
+                  }]
+                }
               })
               .otherwise({
                 redirectTo: '/'
@@ -106,5 +117,15 @@ angular
             }
 
 
+          });
+
+          $rootScope.$on("$routeChangeSuccess", function(userInfo) {
+            console.log(userInfo);
+          });
+
+          $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
+            if (eventObj.authenticated === false) {
+              $location.path("/login");
+            }
           });
         }]);

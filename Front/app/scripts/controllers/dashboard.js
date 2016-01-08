@@ -2,18 +2,49 @@
 
 
 angular.module('travelDiary')
-  .controller('DashboardCtrl', ['$scope', 'NgMap', '$timeout', 'StreetView', '$http',
-    function($scope, NgMap, timeout, StreetView, $http){
+  .controller('DashboardCtrl', ['$scope', 'NgMap', '$timeout', 'StreetView', '$http', 'AuthenticationService',
+    function($scope, NgMap, timeout, StreetView, $http, AuthenticationService){
       var vm = this;
       vm.locations = [];
       var locations = [];
+      var userInfo = AuthenticationService.getUserInfo();
+      $scope.userName = userInfo.name;
+      console.log(AuthenticationService.getUserInfo());
+      /**
+       * Logout Method
+       */
+      $scope.logout = function () {
 
-      $scope.toggleModal = function(){
-        $scope.showModal = !$scope.showModal;
-        console.log($scope.showModal);
+        AuthenticationService.logout()
+          .then(function (result) {
+            $scope.userInfo = null;
+            $location.path("/login");
+          }, function (error) {
+            console.log(error);
+          });
       };
-      $scope.showPinDetails = false;
-      NgMap.getMap().then(function(map){
+
+      /**
+       * Toggle modal method
+       */
+      $scope.toggleModal = function(){
+        $("#myModal").modal('show');
+      };
+
+      $("#myModal").on('hidden.bs.modal', function(e){
+        console.log('.modal-title');
+        $('.modal-title').html('');
+        $('.modal-body').html('');
+      });
+
+
+      function createaModal(data, title, body) {
+        var myModal = $('#myModal');
+      }
+        /**
+         * Map Logic
+         */
+        NgMap.getMap().then(function(map){
         vm.map = map;
 
         $http.get('https://spreadsheets.google.com/feeds/list/1yfhNvvL53M0IoipZUn4cwReUe68XiBklztZX0NhiQHM/1/public/basic?alt=json-in-script&callback=JSON_CALLBACK')
@@ -60,11 +91,22 @@ angular.module('travelDiary')
             });
 
             vm.markerClusterer = new MarkerClusterer(map, vm.locations, {});
-            console.log(vm.markerClusterer);
-            console.log(vm);
-            $scope.getLocationsOnSpecificDate = function(year, month, day){
-              console.log('i am here');
-              vm.markerClusterer.fitMapToMarkers();
+            vm.markerClusterer.fitMapToMarkers();
+
+            $scope.getLocationsOnSpecificDate = function(year){
+
+              $.get('url',year,function(response){
+                var data = angular.fromJson(response);
+                var detailsModal = $('#myModal');
+                var title = detailsModal.find('.modal-title');
+                var body = detailsModal.find('.modal-body');
+
+                title.append('Your most travelled month was:');
+                title.append('<strong>' + data.month + '<strong>');
+                title.append("You've been in " + '<b>' + data.noOfPlaces + '</b>' + ' during that period');
+
+              });
+
             };
           });
 
