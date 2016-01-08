@@ -2,7 +2,9 @@ module API::V1
   class UsersController < ApplicationController
 
     def login
+      params
 
+      render :json => {:id => "10001"}
     end
 
     def get_data

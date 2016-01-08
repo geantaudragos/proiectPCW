@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+
     scope module: 'api' do
+
       namespace :v1 do
 
         resources :user do
           collection do
-            post 'login'
+            post 'login', to: "users#login"
           end
           get 'data', to: "users#get_data"
           get 'locations', to: "users#get_locations"

@@ -17,10 +17,11 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngMap'
+    'ngMap',
+    'facebook'
   ])
-  .config(['$routeProvider',
-          function ($routeProvider) {
+  .config(['$routeProvider', 'FacebookProvider', '$httpProvider',
+          function ($routeProvider, FacebookProvider, $httpProvider) {
 
             $routeProvider
               .when('/', {
@@ -41,7 +42,13 @@ angular
               .otherwise({
                 redirectTo: '/'
               });
-  }])
+
+            FacebookProvider.init('160977360928968');
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+
+
+          }])
   .directive('modal', function() {
   return {
     template: '<div class="modal fade">' +
