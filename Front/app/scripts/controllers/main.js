@@ -23,15 +23,24 @@ angular.module('travelDiary')
             function(response) {
               var userParams = response;
               $.post("http://api.localhost:3000/v1/user/login", {'loginParams' : loginParams, 'userParams' : userParams}, function(data){
-                  $location.path('/dashboard');
-                console.log(data);
+                var user_id = data.id;
+                if(data.locations == 0){
+                  Facebook.api(
+                    '/me/tagged_places',
+                    'GET',
+                    {access_token:accesToken, limit:100},
+                    function(response) {
+                              $.post("http://api.localhost:3000/v1/user/" + user_id + "/locations", response, function(succes){
+                                console.log("succes");
+                              });
+                    }
+                  );
+                }
               });
             }
           );
-
-
-
-      },
+          $location.path('/dashboard');
+        },
         {scope: 'email, user_hometown, user_photos, user_tagged_places'});
     };
 
