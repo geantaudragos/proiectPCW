@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :photos
-  has_many :locations
+  has_many :photos, :dependent => :destroy
+  has_many :locations, :dependent => :destroy
 end
