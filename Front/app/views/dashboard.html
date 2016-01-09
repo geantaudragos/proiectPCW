@@ -23,13 +23,13 @@
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="">Most Visited Places</a>
+                <a ng-click="getMostVisitedPlaces()">Most Visited Places</a>
               </li>
               <li>
-                <a ng-click="toggleModal()">Most Travelled Month</a>
+                <a ng-click="getLocationsOnSpecificDate()">Most Travelled Month</a>
               </li>
               <li>
-                <a href="">Most Visited City</a>
+                <a ng-click="getMostVisitedCities()">Most Visited Cities</a>
               </li>
             </ul>
           </li>
@@ -63,8 +63,6 @@
 
 </ng-map>
 
-<button ng-click="getLocationsOnSpecificDate(1,1,1)"></button>
-
 <!--<modal title="Details" visible="showPinDetails">-->
   <!--dasdawqedqeasd-->
   <!--asdas-->
@@ -78,9 +76,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">asdsad</h4>
+        <h4 class="modal-title"></h4>
       </div>
-      <div class="modal-body">sadadas</div>
+      <div class="modal-body"></div>
     </div>
   </div>
 </div>

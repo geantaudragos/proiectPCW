@@ -56,8 +56,7 @@ angular
 
             FacebookProvider.init('160977360928968');
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
-
+            $httpProvider.defaults.useXDomain = true;
 
           }])
   .directive('modal', function() {
@@ -120,7 +119,7 @@ angular
           });
 
           $rootScope.$on("$routeChangeSuccess", function(userInfo) {
-            console.log(userInfo);
+            //console.log(userInfo);
           });
 
           $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {

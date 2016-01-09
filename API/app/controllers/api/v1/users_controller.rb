@@ -16,7 +16,7 @@ module API::V1
 
       locations = Location.where("user_id = ?", user.id).count
 
-      render :json => {:id => user.id, :name => user.name, :locations => locations}
+      render :json => {:id => user.id, :name => user.name, :locations => locations}, :status => 200
     end
 
     def get_data
@@ -91,12 +91,12 @@ module API::V1
       user_id = verify_user_id params[:user_id]
       year = params[:year]
       unless user_id.nil?
-        query = "SELECT count(*) \"Number\", to_char(visited_at, 'MON') \"Month\" FROM LOCATIONS
-                 WHERE to_char(visited_at, 'YYYY') = " + year + " AND user_id = " + user_id + "
+              query = "SELECT count(*) \"Number\", to_char(visited_at, 'MON') \"Month\" FROM LOCATIONS
+                 WHERE to_char(visited_at, 'YYYY') = '" + year + "' AND user_id = " + user_id + "
                  GROUP BY to_char(visited_at, 'MON')
                  HAVING count(*) = (
                   SELECT max(count(*)) FROM LOCATIONS
-                  WHERE to_char(visited_at, 'YYYY') = " + year + "
+                  WHERE to_char(visited_at, 'YYYY') = '" + year + "' AND user_id = " + user_id + "
                   GROUP BY to_char(visited_at, 'MM')
                  )"
         month = ActiveRecord::Base.connection.exec_query(query)
@@ -140,12 +140,12 @@ module API::V1
         query = "SELECT * FROM (
                   SELECT DISTINCT CITY
                   FROM LOCATIONS
-                  WHERE USER_ID = " + user_id + " AND CITY IS NOT " + hometown + "
+                  WHERE USER_ID = " + user_id + " AND CITY <>  '" + hometown + "'
                   GROUP BY CITY
                   HAVING count(*) <= (
                          SELECT max(count(*))
                          FROM LOCATIONS
-                         WHERE USER_ID = " + user_id + " AND CITY IS NOT " + hometown + "
+                         WHERE USER_ID = " + user_id + " AND CITY <> '" + hometown + "'
                          GROUP BY CITY
                          )
                   ORDER BY 1 DESC
