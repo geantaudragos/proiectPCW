@@ -6,38 +6,35 @@ angular.module('travelDiary')
 
     function facebookLogin() {
       var deferred = $q.defer();
-      //
-      //Facebook.login(function(response) {
-      //  var accessToken = response.authResponse.accessToken;
-      //  Facebook.api(
-      //    '/me?fields=email,name',
-      //    'GET',
-      //    {
-      //      access_token:accesToken
-      //    },
-      //    function ( response ) {
-      //      $.post("http://api.localhost:3000/v1/user/login", response, function(data){
-      //        var info = angular.fromJson(data);
-      //        userInfo = {
-      //          email : info.email,
-      //          name  : info.name,
-      //          id    : info.id,
-      //          noOfLocations : info.locations
-      //        };
-      //        $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-      //        deferred.resolve(userInfo);
-      //      }, function(error) {
-      //        deferred.reject(error);
-      //      });
-      //    });
-      //    });
-      userInfo = {
-        email : 'asdasd',
-        name  : 'asdads',
-        id    : '21',
-        noOfLocations : '12'
-      };
-      $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+
+      Facebook.login(function(response) {
+        var loginParams = response.authResponse;
+        var accessToken = loginParams.accessToken;
+        Facebook.api(
+          '/me?fields=email,name,hometown',
+          'GET',
+          {
+            access_token:accessToken
+          },
+          function ( response ) {
+            var userParams = response;
+
+            $.post("http://api.localhost:3000/v1/user/login", {'userParams':userParams, 'loginParams':loginParams}, function(data){
+              var info = angular.fromJson(data);
+
+              userInfo = {
+                name  : info.name,
+                id    : info.id,
+                noOfLocations : info.locations
+              };
+              $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+              deferred.resolve(userInfo);
+            });
+          }
+        );
+      });
+
+     // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
       deferred.resolve(userInfo);
       return deferred.promise;
     }

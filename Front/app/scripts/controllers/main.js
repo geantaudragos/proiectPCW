@@ -8,13 +8,10 @@
  * Controller of the travelDiary
  */
 angular.module('travelDiary')
-<<<<<<< HEAD
   .controller('MainCtrl', function ($scope, $rootScope, $http, $location, Facebook, $timeout, AuthenticationService) {
     $rootScope.user = {
       name : 'User'
     };
-
-
     $scope.facebookLogin = function () {
       AuthenticationService.facebookLogin()
         .then(function(result){
@@ -28,67 +25,7 @@ angular.module('travelDiary')
               $window.alert("Invalid credentials");
               console.log("error");
       });
-=======
-  .controller('MainCtrl', function ($scope, $rootScope, $http, $location, Facebook) {
-    $scope.something='sdada';
-    $scope.login = function() {
-      console.log('wqdw');
-      // From now on you can use the Facebook service just as Facebook api says
-      Facebook.login(function(response) {
-          var loginParams = response.authResponse;
-          var accesToken = loginParams.accessToken;
-          Facebook.api(
-            '/me?fields=email,name,hometown',
-            'GET',
-            {access_token:accesToken},
-            function(response) {
-              var userParams = response;
-              $.post("http://api.localhost:3000/v1/user/login", {'loginParams' : loginParams, 'userParams' : userParams}, function(data){
-                var user_id = data.id;
-                if(data.locations == 0){
-                  Facebook.api(
-                    '/me/tagged_places',
-                    'GET',
-                    {access_token:accesToken, limit:100},
-                    function(response) {
-                              $.post("http://api.localhost:3000/v1/user/" + user_id + "/locations", response, function(succes){
-                                console.log("succes");
-                              });
-                    }
-                  );
-                }
-              });
-            }
-          );
-          $location.path('/dashboard');
-        },
-        {scope: 'email, user_hometown, user_photos, user_tagged_places'});
->>>>>>> 9e9c2b24b2642fe3c4346b46faf10f1029746b5c
     };
-    //
-    //$scope.login = function() {
-    //
-    //  // From now on you can use the Facebook service just as Facebook api says
-    //  Facebook.login(function(response) {
-    //      var accesToken = response.authResponse.accessToken;
-    //      Facebook.api(
-    //        '/me?fields=email,name',
-    //        'GET',
-    //        {access_token:accesToken},
-    //        function(response) {
-    //          $.post("http://api.localhost:3000/v1/user/login", response, function(data){
-    //              console.log(data);
-    //              $location.path('/dashboard');
-    //          });
-    //          console.log(response);
-    //        }
-    //      );
-    //
-    //
-    //
-    //  },
-    //    {scope: 'email, user_hometown, user_photos, user_tagged_places'});
-    //};
 
     $scope.getLoginStatus = function() {
       Facebook.getLoginStatus(function(response) {
@@ -142,7 +79,6 @@ angular.module('travelDiary')
     $scope.showModal = false;
     $scope.toggleModal = function(){
       $scope.showModal = !$scope.showModal;
-      console.log($scope.showModal);
     };
   });
 

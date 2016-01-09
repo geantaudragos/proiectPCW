@@ -7,9 +7,9 @@ angular.module('travelDiary')
       var vm = this;
       vm.locations = [];
       var locations = [];
+
       var userInfo = AuthenticationService.getUserInfo();
       $scope.userName = userInfo.name;
-      console.log(AuthenticationService.getUserInfo());
       /**
        * Logout Method
        */
@@ -32,7 +32,6 @@ angular.module('travelDiary')
       };
 
       $("#myModal").on('hidden.bs.modal', function(e){
-        console.log('.modal-title');
         $('.modal-title').html('');
         $('.modal-body').html('');
       });
@@ -45,25 +44,20 @@ angular.module('travelDiary')
          * Map Logic
          */
         NgMap.getMap().then(function(map){
-        vm.map = map;
+          vm.map = map;
 
-        $http.get('https://spreadsheets.google.com/feeds/list/1yfhNvvL53M0IoipZUn4cwReUe68XiBklztZX0NhiQHM/1/public/basic?alt=json-in-script&callback=JSON_CALLBACK')
-          .then(function(response){
 
-            // Parsing stupid response
-            var myJson = response.data.replace('// API callback','');
-            myJson = myJson.replace('JSON_CALLBACK(','');
-            myJson = myJson.substring(0, myJson.length - 2);
+          $http.get('http://api.localhost:3000/v1/user/' + userInfo.id + '/locations')
+            .then(function(response){
+              // Parsing stupid response
+            var entries = angular.fromJson(response.data);
 
-            var entries = angular.fromJson(myJson).feed.entry;
-
-            angular.forEach(entries, function(checkIn, key){
-              var myData = checkIn.content.$t.split(',');
-              //console.log(myData[1].split(' lat: ')[1]);
+            angular.forEach(entries, function(entry, key){
               locations.push({
-                name      : myData[0].split('name: ')[1],
-                longitude  : myData[1].split(' lat: ')[1],
-                latitude : myData[2].split(' long: ')[1]
+                name       : entry.name,
+                longitude  : entry.longitude,
+                latitude   : entry.latitude,
+                city       : entry.city
               });
             });
 
@@ -92,22 +86,90 @@ angular.module('travelDiary')
 
             vm.markerClusterer = new MarkerClusterer(map, vm.locations, {});
             vm.markerClusterer.fitMapToMarkers();
+            $scope.year = 2014;
+            $scope.getLocationsOnSpecificDate = function(){
+              var detailsModal = $('#myModal');
+              var title = detailsModal.find('.modal-title');
+              var body = detailsModal.find('.modal-body');
+              console.log(body, title, detailsModal);
+              title.append("<input id='newYear' class='form-control' type='number' ng-model='year' placeholder='Type in the year'>");
 
-            $scope.getLocationsOnSpecificDate = function(year){
+              $('#newYear').on('keypress',function(e){
+                var code = e.keyCode || e.which;
+                if(code == 13) { //Enter keycode
+                  var params = {
+                    'year' : $('#newYear').val()
+                  };
 
-              $.get('url',year,function(response){
-                var data = angular.fromJson(response);
-                var detailsModal = $('#myModal');
-                var title = detailsModal.find('.modal-title');
-                var body = detailsModal.find('.modal-body');
-
-                title.append('Your most travelled month was:');
-                title.append('<strong>' + data.month + '<strong>');
-                title.append("You've been in " + '<b>' + data.noOfPlaces + '</b>' + ' during that period');
+                  $.get('http://api.localhost:3000/v1/user/' + userInfo.id + '/most_traveled_period', params, function(response){
+                    if(!response) {
+                      body.html('You have no locations for the specified year');
+                    } else {
+                      var tempResp = angular.fromJson(response)[0];
+                      body.html('In ' + tempResp.Month + ' ' + $('#newYear').val() +  ' you have left the city ' + tempResp.Number + ' times');
+                    }
+                  });
+                }
 
               });
+              detailsModal.modal('show');
+              //$.get('url',year,function(response){
+              //  var data = angular.fromJson(response);
+              //  var detailsModal = $('#myModal');
+              //  var title = detailsModal.find('.modal-title');
+              //  var body = detailsModal.find('.modal-body');
+              //
+              //  title.append('Your most travelled month was:');
+              //  title.append('<strong>' + data.month + '<strong>');
+              //  title.append("You've been in " + '<b>' + data.noOfPlaces + '</b>' + ' during that period');
+              //
+              //});
 
             };
+
+              $scope.getDateLocations = function(year) {
+                console.log(year);
+              };
+              $scope.getMostVisitedPlaces = function() {
+                $http.get('http://api.localhost:3000/v1/user/' + userInfo.id + '/most_visited_places')
+                  .then(function(response){
+                    var places = angular.fromJson(response.data);
+                    var detailsModal = $('#myModal');
+                    var title = detailsModal.find('.modal-title');
+                    var body = detailsModal.find('.modal-body');
+                   // console.log(response);
+                    title.append('Your most visited places are: ');
+                   // console.log(places);
+                    angular.forEach(places, function(place){
+                      body.append(place.name + ' has been visited ' + place.Visits + '<br>');
+                    });
+
+                    detailsModal.modal('show');
+
+                  });
+              }
+
+
+              $scope.getMostVisitedCities = function() {
+                $http.get('http://api.localhost:3000/v1/user/' + userInfo.id + '/most_visited_cities')
+                  .then(function (response) {
+                    var places = angular.fromJson(response.data);
+                    var detailsModal = $('#myModal');
+                    var title = detailsModal.find('.modal-title');
+                    var body = detailsModal.find('.modal-body');
+                    // console.log(response);
+                    title.append('Your most visited cities are: ');
+                    console.log(places);
+                    angular.forEach(places, function (place) {
+                      body.append('<h3>' + place.city + '</h3>');
+                    });
+
+                    detailsModal.modal('show');
+
+                  });
+              };
+
+
           });
 
 
