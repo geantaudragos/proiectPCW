@@ -58,6 +58,24 @@ ng-map {
   padding: 20px 10px 20px 10px;
 }
 
+.content-wrapper {
+  padding-left: 20%;
+  padding-right: 20%;
+  color: #FFFFFF;
+}
+
+  .content-wrapper p {
+    text-align: justify;
+  }
+
+#nextContent:hover {
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.pointerClass {
+  cursor: pointer
+}
+
 .container-fluid > div {
   padding: 10px;
 }

@@ -1,72 +1,51 @@
 <!-- Add your site or application content here -->
-<div class="header" style="position: fixed; top: 0;">
-  <div class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
+<main-nav>
 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+</main-nav>
 
-        <a class="navbar-brand" href="#/">Travel Diary</a>
-      </div>
 
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#/">Home</a></li>
-          <li><a ng-href="#/dashboard">Dashboard</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#/">Contact</a></li>
-        </ul>
-      </div>
+  <content ng-show="main.content.home" data="home" ng-class="{'animated fadeInDown' : main.content.home}">
+    <div class="content-wrapper">
+    <h1>Home</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla nisl ac ornare. In nec ultricies ipsum. In ultrices, lectus et pharetra pharetra, orci tellus ullamcorper nulla, ac iaculis lectus ligula ac arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent tempus finibus leo, sed fermentum erat euismod eu. Ut vel risus eu neque elementum semper quis auctor tortor. Proin non ornare neque, ac dapibus quam. Aenean aliquet tincidunt lorem, vel finibus dui fermentum quis. Vestibulum commodo tempor tempor. Praesent non finibus neque. Pellentesque diam lorem, varius consequat mollis eget, volutpat a nisl.
+    </p>
     </div>
-  </div>
-</div>
+  </content>
 
-
-<div class="container-fluid">
-  <div class="row highlight">
-    <div class="col-md-12" ng-repeat="detail in details">
-      <h1 ng-show="detail.show">{{detail.text}}</h1>
-
+<content ng-show="main.content.about" data="about" ng-class="{'animated fadeInDown' : main.content.about}">
+  <div class="content-wrapper">
+  <h1>About</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla nisl ac ornare. In nec ultricies ipsum. In ultrices, lectus et pharetra pharetra, orci tellus ullamcorper nulla, ac iaculis lectus ligula ac arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent tempus finibus leo, sed fermentum erat euismod eu. Ut vel risus eu neque elementum semper quis auctor tortor. Proin non ornare neque, ac dapibus quam. Aenean aliquet tincidunt lorem, vel finibus dui fermentum quis. Vestibulum commodo tempor tempor. Praesent non finibus neque. Pellentesque diam lorem, varius consequat mollis eget, volutpat a nisl.
+  </p>
     </div>
-    <span class="glyphicon glyphicon-chevron-down" ng-click="getDetail()"></span>
-  </div>
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <button class="btn btn-default" ng-click="toggleModal()">Log in</button>
-    </div>
-  </div>
-</div>
+</content>
 
 
+<content ng-show="main.content.features" data="features" ng-class="{'animated fadeInDown' : main.content.features}">
+  <div class="content-wrapper">
+  <h1>Features</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla nisl ac ornare. In nec ultricies ipsum. In ultrices, lectus et pharetra pharetra, orci tellus ullamcorper nulla, ac iaculis lectus ligula ac arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent tempus finibus leo, sed fermentum erat euismod eu. Ut vel risus eu neque elementum semper quis auctor tortor. Proin non ornare neque, ac dapibus quam. Aenean aliquet tincidunt lorem, vel finibus dui fermentum quis. Vestibulum commodo tempor tempor. Praesent non finibus neque. Pellentesque diam lorem, varius consequat mollis eget, volutpat a nisl.
+  </p>
+    </div>
+</content>
 
-<modal title="Login form" visible="showModal" ng-controller="AuthenticationCtrl">
-  <div class="alert alert-danger" ng-show="error">{{error}}</div>
-  <form role="form" name="form" ng-submit="login()">
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <i class="fa fa-key"></i>
-      <input name="email" type="email" class="form-control" id="email" ng-model="email" placeholder="Enter email" required/>
-      <span class="help-block" ng-show="form.email.$dirty && form.email.$error.required">Email is required</span>
+
+<content ng-show="main.content.contact" data="contact" ng-class="{'animated fadeInDown' : main.content.contact}">
+  <div class="content-wrapper">
+  <h1>Contact</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum fringilla nisl ac ornare. In nec ultricies ipsum. In ultrices, lectus et pharetra pharetra, orci tellus ullamcorper nulla, ac iaculis lectus ligula ac arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent tempus finibus leo, sed fermentum erat euismod eu. Ut vel risus eu neque elementum semper quis auctor tortor. Proin non ornare neque, ac dapibus quam. Aenean aliquet tincidunt lorem, vel finibus dui fermentum quis. Vestibulum commodo tempor tempor. Praesent non finibus neque. Pellentesque diam lorem, varius consequat mollis eget, volutpat a nisl.
+  </p>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <i class="fa fa-lock"></i>
-      <input type="password" name="password" class="form-control" id="password" placeholder="Password" ng-model="password" required/>
-      <span class="help-block" ng-show="form.password.$dirty && form.password.$error.required">Password is required</span>
-    </div>
-    <div class="form-actions">
-      <button type="submit" class="btn btn-danger" ng-disabled="form.$invalid || dataLoading">Login</button>
-      <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-    </div>
-  </form>
-  {{something}}
-  <button class="btn btn-default" ng-click="facebookLogin()">Login with facebook</button>
+</content>
+
+<modal title="Login form" visible="showModal">
+  <login-box>
+
+  </login-box>
 </modal>
 
 

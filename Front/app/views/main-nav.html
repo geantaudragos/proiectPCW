@@ -1,0 +1,41 @@
+<div class="header" style="position: fixed; top: 0;">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#/">Travel Diary</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+        <ul class="nav navbar-nav pointerClass">
+          <li ng-class="{'active': main.content.home}" data="home" ng-click="main.getContent($event)"><a >Home</a></li>
+          <li ng-class="{'active': main.content.about}"><a data="about" ng-click="main.getContent($event)">About</a></li>
+          <li ng-class="{'active': main.content.features}"><a data="features" ng-click="main.getContent($event)">Features</a></li>
+          <li ng-class="{'active': main.content.contact}"><a data="contact" ng-click="main.getContent($event)">Contact</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a class="btn btn-block" ng-click="toggleModal()">
+              <span class="fa fa-sign-in fa-lg"></span>
+            </a>
+          </li>
+          <li>
+            <a class="btn btn-block btn-social btn-facebook" ng-click="facebookLogin()">
+              <span class="fa fa-facebook fa-lg"></span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
