@@ -77,15 +77,15 @@ angular
 
           });
 
-          $rootScope.$on("$routeChangeSuccess", function(userInfo) {
-            //console.log(userInfo);
-          });
-
-          $rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
-            if (eventObj.authenticated === false) {
-              $location.path("/login");
-            }
-          });
+          //$rootScope.$on("$routeChangeSuccess", function(userInfo) {
+          //  //console.log(userInfo);
+          //});
+          //
+          //$rootScope.$on("$routeChangeError", function(event, current, previous, eventObj) {
+          //  if (eventObj.authenticated === false) {
+          //    $location.path("/login");
+          //  }
+          //});
         }]);
 
 

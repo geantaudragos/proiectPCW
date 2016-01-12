@@ -24,7 +24,7 @@ angular.module('travelDiary')
     };
     vm.showModal     = false;
     vm.toggleModal   = function () { vm.showModal = !vm.showModal; };
-    vm.facebookLogin = UserService.FacebookLogin();
+    vm.facebookLogin = function () { UserService.FacebookLogin(); };
 
 
     function getContent(element) {

@@ -15,8 +15,10 @@
       var keyCode = $event.which || $event.keyCode;
 
       var request = {
-        params : vm.year,
-        location : 'locations'
+        params : {
+          'year' : vm.year
+        },
+        location : 'month'
       };
       if(keyCode === 13) {
         UserService.getData(request)

@@ -486,3 +486,1995 @@ ActionController::RoutingError (No route matches [GET] "/api"):
   [1m[36mPrimary Key (8.7ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'DRAGOS' AND c.table_name = 'USERS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
   [1m[35m (6.6ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'DRAGOS' AND table_name = 'USERS' AND hidden_column = 'NO' ORDER BY column_id
   [1m[36mUser Load (3.2ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10001]]
+
+
+Started POST "/v1/user/login" for ::1 at 2016-01-12 14:13:16 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (16.8ms)[0m  [1mSELECT "SCHEMA_MIGRATIONS".* FROM "SCHEMA_MIGRATIONS"[0m
+  [1m[35m (378.9ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'DRAGOS' AND table_name = 'SCHEMA_MIGRATIONS' AND hidden_column = 'NO' ORDER BY column_id
+Processing by API::V1::UsersController#login as */*
+  Parameters: {"userParams"=>{"email"=>"geantaudragos@gmail.com", "name"=>"Dragoș Geantău", "hometown"=>{"id"=>"101882609853782", "name"=>"Iasi, Romania"}, "id"=>"1108190122539699"}, "loginParams"=>{"accessToken"=>"CAACSaHZAqQMgBAHyJr6EefVwyG4uDnlZAs2EZAd1hjCGl5AyiDx38HdJgEZA0FqwHEMmDZCa4vv988vdvEBUxkZCPNyctOusrcYKLN7fMso7TCHDaDrZAq8M2IbGIgQz9SOgCpBhm4oPiKxHwgE4Wa5BD2FLVTVs1ZCK4eZAOvOwN7itrOm4XwZBxtCrqx5n6iz6wZCviOApQoVTmxGivGTeQzx", "userID"=>"1108190122539699", "expiresIn"=>"6411", "signedRequest"=>"ETKOM3NKFhWw-f9a6ptB8hUa9rYQwROu_FQd-KbboUY.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUJRb3JmUTU5Y1dzeFZ6SzZXYnh6ek8wcGRyaGtnZ3g2bHJyYjFxU2V1bEZmNzFULU5TVTFabHhRNThHNVlPQllRemdIX3FwcmpXZndVUkdzbklENlZhZ2U4NnFYUld3anVGVUZQOHhEQ1ZkamxUZmlNTXFZb01FOGF4NHFMSFhUWVd5R2xuaThLRk5TblJ2ODdFdzNwSk8xSDVybGQxdy1CVUFVeUVOTW9ueTM4VzFHQmxmNnpqSXpENmdSWm1DYkc3V3F1bW9JdjZtN09fLUVabVhrS0VURHNNdWpxTVNfU010Q1ZPWEJ2WTdvaXRXVzhNNXRTLWRSckNWd2tuUERITERZUXFSY1NMWmlLMmFBbDlJS05OUWptdV9pcWVQOVpuVUNmeHVMOTdBNXh6SUhwakU3ektMRzJIMVN3V1lTajJuRkRJZ1dwQkVhZEcyZmdKWm1OayIsImlzc3VlZF9hdCI6MTQ1MjYwMDc4OCwidXNlcl9pZCI6IjExMDgxOTAxMjI1Mzk2OTkifQ"}}
+  [1m[36m (6.8ms)[0m  [1mSELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'DRAGOS' AND table_name = 'USERS' AND hidden_column = 'NO' ORDER BY column_id[0m
+  [1m[35mUser Load (10.5ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."UID" = :a1 AND ROWNUM <= 1   [["uid", "1108190122539699"]]
+  [1m[36m (141.0ms)[0m  [1mSELECT DECODE(table_name, UPPER(table_name), LOWER(table_name), table_name) FROM all_tables WHERE owner = SYS_CONTEXT('userenv', 'current_schema') AND secondary = 'N'[0m
+  [1m[35mSequence (17.6ms)[0m  select us.sequence_name from all_sequences us where us.sequence_owner = 'DRAGOS' and us.sequence_name = 'USERS_SEQ'
+  [1m[36mPrimary Key (486.6ms)[0m  [1mSELECT cc.column_name FROM all_constraints c, all_cons_columns cc WHERE c.owner = 'DRAGOS' AND c.table_name = 'USERS' AND c.constraint_type = 'P' AND cc.owner = c.owner AND cc.constraint_name = c.constraint_name[0m
+  [1m[35m (5.0ms)[0m  SELECT column_name AS name, data_type AS sql_type, data_default, nullable, virtual_column, hidden_column, data_type_owner AS sql_type_owner, DECODE(data_type, 'NUMBER', data_precision, 'FLOAT', data_precision, 'VARCHAR2', DECODE(char_used, 'C', char_length, data_length), 'RAW', DECODE(char_used, 'C', char_length, data_length), 'CHAR', DECODE(char_used, 'C', char_length, data_length), NULL) AS limit, DECODE(data_type, 'NUMBER', data_scale, NULL) AS scale FROM all_tab_cols WHERE owner = 'DRAGOS' AND table_name = 'LOCATIONS' AND hidden_column = 'NO' ORDER BY column_id
+  [1m[36m (6.2ms)[0m  [1mSELECT COUNT(*) FROM "LOCATIONS" WHERE (user_id = 10117)[0m
+Completed 200 OK in 711ms (Views: 1.0ms | ActiveRecord: 673.7ms)
+
+
+Started GET "/v1/user/10117locations" for ::1 at 2016-01-12 14:18:41 +0200
+
+ActionController::RoutingError (uninitialized constant API::V1::UserController):
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:263:in `const_get'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:263:in `block in constantize'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:72:in `controller_reference'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:62:in `controller'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:41:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.3ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (18.3ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (77.8ms)
+
+
+Started GET "/v1/user/10117locations" for 127.0.0.1 at 2016-01-12 14:18:42 +0200
+
+ActionController::RoutingError (uninitialized constant API::V1::UserController):
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:263:in `const_get'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:263:in `block in constantize'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:72:in `controller_reference'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:62:in `controller'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:41:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.8ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.8ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.8ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (33.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:19:02 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (26.8ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 39ms (Views: 11.3ms | ActiveRecord: 26.8ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:19:05 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.3ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 46ms (Views: 42.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:20:25 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (6.1ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 16ms (Views: 7.2ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:20:32 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (8.2ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 22ms (Views: 10.5ms | ActiveRecord: 8.2ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:20:33 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 15ms (Views: 9.8ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:20:38 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.1ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 16ms (Views: 10.5ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/v1/user/10117/most_traveled_cities" for ::1 at 2016-01-12 14:21:01 +0200
+
+ActionController::RoutingError (No route matches [GET] "/v1/user/10117/most_traveled_cities"):
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.5ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (35.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:21:48 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.4ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 7.2ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:21:52 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 9ms (Views: 5.4ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:21:54 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 7.6ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/v1/user/10117/most_traveled_period" for ::1 at 2016-01-12 14:21:57 +0200
+Processing by API::V1::UsersController#get_most_traveled_period as HTML
+  Parameters: {"user_id"=>"10117"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of nil into String):
+  app/controllers/api/v1/users_controller.rb:95:in `+'
+  app/controllers/api/v1/users_controller.rb:95:in `get_most_traveled_period'
+
+
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.7ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (19.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:25:04 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (46.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 85ms (Views: 22.3ms | ActiveRecord: 46.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:25:08 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (6.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 21ms (Views: 14.0ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:25:09 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 13ms (Views: 8.8ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/user/10117/most_traveled_period?year=2014" for ::1 at 2016-01-12 14:25:12 +0200
+Processing by API::V1::UsersController#get_most_traveled_period as HTML
+  Parameters: {"year"=>"2014", "user_id"=>"10117"}
+  [1m[35mSQL (33.2ms)[0m  SELECT count(*) "Number", to_char(visited_at, 'MON') "Month" FROM LOCATIONS
+                 WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                 GROUP BY to_char(visited_at, 'MON')
+                 HAVING count(*) = (
+                  SELECT max(count(*)) FROM LOCATIONS
+                  WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                  GROUP BY to_char(visited_at, 'MM')
+                 )
+Completed 200 OK in 34ms (Views: 0.2ms | ActiveRecord: 33.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:26:53 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.7ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 16ms (Views: 9.8ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:26:57 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.9ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 15ms (Views: 7.3ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:26:59 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.7ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 11ms (Views: 5.8ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:26:59 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (12.5ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (34.7ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 64ms (Views: 0.3ms | ActiveRecord: 47.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:28:43 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.2ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 14ms (Views: 9.8ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:28:45 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:28:46 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:29:04 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.2ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 21ms (Views: 15.1ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:29:05 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.2ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 27ms (Views: 22.1ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:29:10 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.4ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:30:02 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.3ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 7.2ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:30:03 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 12ms (Views: 8.1ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:30:08 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:30:22 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:30:22 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 8ms (Views: 5.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:30:27 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.8ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 7.9ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:30:29 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.9ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 13ms (Views: 6.7ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:30:32 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.2ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:30:55 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.0ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 23ms (Views: 17.4ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:30:55 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.0ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 13ms (Views: 8.1ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:31:04 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 15ms (Views: 8.8ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:31:06 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (2.2ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:31:06 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (8.0ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 24ms (Views: 15.5ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:31:57 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 8.6ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:31:58 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.0ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 56ms (Views: 50.3ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:32:01 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:32:18 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.2ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:32:22 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:33:26 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 9ms (Views: 5.2ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:33:28 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.9ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 14ms (Views: 10.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:35:22 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.8ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 8.7ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:35:24 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 24ms (Views: 18.5ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:35:24 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.1ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:35:53 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.0ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 34ms (Views: 28.3ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:35:54 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (11.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 35ms (Views: 21.5ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:38:17 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 8.9ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:38:18 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (2.9ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/v1/user/10117/locations" for 127.0.0.1 at 2016-01-12 14:38:20 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 18ms (Views: 11.1ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:38:25 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.4ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:38:27 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.4ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:39:29 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.9ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 9.3ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:41:23 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (350.0ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 362ms (Views: 10.9ms | ActiveRecord: 350.0ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:41:26 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (209.1ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (421.1ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 633ms (Views: 0.8ms | ActiveRecord: 630.1ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:41:30 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (45.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 53ms (Views: 6.9ms | ActiveRecord: 45.5ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:41:31 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (14.8ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 18ms (Views: 0.6ms | ActiveRecord: 16.3ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:42:58 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.0ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:43:02 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.3ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:46:04 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (6.7ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 25ms (Views: 15.3ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:48:20 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (8.1ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 37ms (Views: 24.6ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:48:20 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.5ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 31ms (Views: 26.3ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:48:21 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.9ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 16ms (Views: 11.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:48:25 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.2ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 11ms (Views: 6.7ms | ActiveRecord: 4.2ms)
+
+
+Started POST "/v1/user/login" for ::1 at 2016-01-12 14:48:42 +0200
+Processing by API::V1::UsersController#login as */*
+  Parameters: {"userParams"=>{"email"=>"bogdan.carpusor@gmail.com", "name"=>"Bogdan Carpusor", "hometown"=>{"id"=>"101882609853782", "name"=>"Iasi, Romania"}, "id"=>"1325945014105528"}, "loginParams"=>{"accessToken"=>"CAACSaHZAqQMgBACK1cAzOREg3OecZBMMa7NRl5rWrulMzAYCZBpxiWYAZAuipZCzkCJV71TiemCsP3fFt7Vt16BEZC3aStuTzJLt4JEguOUZCDamkKgMJyNlPKupIKsyxSRq5cKfh9RL1pMIBu8yFlELikpvt1ZBXQP8GzEDxEwzlTaHASdBHmank0O3Cg3d6plTUZBfvKg3QfwZDZD", "userID"=>"1325945014105528", "expiresIn"=>"4280", "signedRequest"=>"Rl8TNfIFj4p--dPGsViixLn0UTBFLHuM5-tNS6QYhRw.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURJQmhLRTdFczVXOUFpNjNHQ1dneUFlNmFqd25hSHBkMHFob01wQ01aLWF5LUd6VE9lZ3ptMGhxVU9HMHRMdXVoM3lfbHNMc2ZJUnhNNG5nSVVDSTZQQW9VMGIyUWV4VFROSlB5X0tmNmVWQ1NNMHNIc05iWGctVzVsbHdxREg5Q2d4WExBR3l5UzZQYVM3aE5WNjYwZk9hM2tFeFlOVWZOdnh2clRGQVQ0elllSTNtNnJGeF84Mml1SEI1SEptblNiM3VlN3dlaGZobU52eUwyaDRjaUxPSkRDMFpHcUZZX25mS3hraE94U1p5eFRLOXhXRFlWc1hCT2dPT2FPeDlRVnFsTFY3VkFRTG9BVlBfRG4zSTNZOFdjR2Z0T0JrWndMM3FJYkNub3VmTkpmUkkybmY1NjBuT293YXo3d0Ixd3l3VXk4bUtIc1haTlRGc2I0cl9iMCIsImlzc3VlZF9hdCI6MTQ1MjYwMjkxOSwidXNlcl9pZCI6IjEzMjU5NDUwMTQxMDU1MjgifQ"}}
+  [1m[35mUser Load (7.0ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."UID" = :a1 AND ROWNUM <= 1   [["uid", "1325945014105528"]]
+  [1m[36m (2.0ms)[0m  [1mSELECT COUNT(*) FROM "LOCATIONS" WHERE (user_id = 10120)[0m
+Completed 200 OK in 39ms (Views: 0.3ms | ActiveRecord: 9.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:48:58 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.4ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 8.8ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:49:24 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:01 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.0ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 11ms (Views: 7.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:07 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (16.3ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 41ms (Views: 23.5ms | ActiveRecord: 16.3ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:07 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (12.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 39ms (Views: 25.0ms | ActiveRecord: 12.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:07 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 85ms (Views: 80.0ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:39 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.0ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 17ms (Views: 10.1ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:43 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.2ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 17ms (Views: 11.1ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:43 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.2ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 14ms (Views: 9.7ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:50:44 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.9ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 15ms (Views: 9.5ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:51:36 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 7.0ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:51:38 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.7ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 18ms (Views: 12.2ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:51:39 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (6.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 19ms (Views: 11.8ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:51:39 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.7ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 15ms (Views: 10.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:51:43 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.4ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/v1/user/login" for ::1 at 2016-01-12 14:52:01 +0200
+Processing by API::V1::UsersController#login as */*
+  Parameters: {"userParams"=>{"email"=>"geantaudragos@gmail.com", "name"=>"Dragoș Geantău", "hometown"=>{"id"=>"101882609853782", "name"=>"Iasi, Romania"}, "id"=>"1108190122539699"}, "loginParams"=>{"accessToken"=>"CAACSaHZAqQMgBAEIu82M0W0rXRBDi3x25BsdN9ZAsJAkW6UbrTXDrfbGSPrNwtuZA2z2N4ceRaEocht7UMsGQm03Qi66X8JBM8iycCjCkzrFLwVPSEx7ZClgrINkokr85kDijrpaGrl0YZBBY7ycXZALSyCIPCAEBLRC2WeEDoSXeFLd7QLXn8GHF8IC60xWKekj26zFGSrniyCWlZADRIA", "userID"=>"1108190122539699", "expiresIn"=>"4083", "signedRequest"=>"Tbu6YjuI3uehvp8KbCjn2vI_nbeTBfIv25CaBSRLTkU.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUF6bkU0cDNHTjNVZDRQeWlBYlZZV2ZreXZtSW5LRmlPNEI1QWx3Z00wYmQ4Y2RwdnVqRnBxZkFLRXNBMXpwbmR3QWY0YnNYcmE0NzdDZkhTUTJwNGNXX1NCVnZFTGNYVUw5WG55OUl3ay1IUWJxLXUzUDhqTVgyQnRDWm4wMmJHSDdZYzhqNWQ5eF9fWmtRY01iQ1RwZ1B1STJ6bUx1bENmN3NyMHlweVNlelNCOHdQZmNUWkVKN2xOSHNoeUtaT3hzaFEteV9GM004aVhndGRmdEFtdlRiOFNCUDVReFVsZVFVY0FvVThHaVZpU3Z2eFlVZUJHek90VnlYWE5vZ21pZld0UzRZRVd2V3B5WFBaWXJMVXNRYnRwNG5NY1gyT1J3U0daZGZmUjQ0Y2R1bm5GWEVvZnp2Nk96bzRkZWtOQkVPQmxGQXRJVzk3YVk4MFV4aHRjcyIsImlzc3VlZF9hdCI6MTQ1MjYwMzExNywidXNlcl9pZCI6IjExMDgxOTAxMjI1Mzk2OTkifQ"}}
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."UID" = :a1 AND ROWNUM <= 1 [0m  [["uid", "1108190122539699"]]
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM "LOCATIONS" WHERE (user_id = 10117)
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:53:56 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 21ms (Views: 12.5ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:02 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.5ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 17ms (Views: 10.6ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:02 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.9ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 61ms (Views: 56.4ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:06 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.3ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 13ms (Views: 9.7ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:37 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 9ms (Views: 4.5ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:44 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 14ms (Views: 8.8ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:44 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (5.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 16ms (Views: 10.3ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/v1/user/undefined/locations" for ::1 at 2016-01-12 14:54:45 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"undefined"}
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/v1/user/login" for ::1 at 2016-01-12 14:54:55 +0200
+Processing by API::V1::UsersController#login as */*
+  Parameters: {"userParams"=>{"email"=>"geantaudragos@gmail.com", "name"=>"Dragoș Geantău", "hometown"=>{"id"=>"101882609853782", "name"=>"Iasi, Romania"}, "id"=>"1108190122539699"}, "loginParams"=>{"accessToken"=>"CAACSaHZAqQMgBAPQIDzasTDZAj76pyupeOjRgZCBihfNeF4Vl226z2quie9ORYW5QahQ83jFJQlERICR87LXz5QvCxOuo9JZA1dZCtKTHoBBACFZASGAtREYsGf4q5HNik7AfmcpMVB1ZAfDYz5uZBEnKjRmXnWDhTs4On1sGfv29jGXFi2epdp4ML6Ek7Ea09pdXhKyILzcQNHkkBNmHqRv", "userID"=>"1108190122539699", "expiresIn"=>"3910", "signedRequest"=>"e_KVwC0WFJo3tJuZKrrMGVwVxGFxsCJjSAIX8iM9X5Y.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUJ5RW95dEVNX3VCNUYxU2QtSzZkN3FJZC1PS3pOZWR6NnlPMGdTamtub0sxeXBpYm9sU3pRa1VGTmFQSGZVTy1iZlB1a2FrbjJub3RlMDJWR3VQLXhDWlZHOFowSE9Od1ctcUFRWW55aUtES0NFT1FJVHdzMThDQzd0ZEludll1VEZha1dHNGJOZmhwY1ZYNnFRcU12c2VaSGZPRDBHRTVHaDdBbFBYMER2cG5iYjJadVpyOXRkUlJsY3JVOEFzdk1OWEl3YnFEREw1cHVlMGRCR09RcU5DRU9wYUJlWWJ1N0JZX2dmcUlzcGM1YnQ3S2x3ZjRSX0prYkZKOU5VbWVSS1dmdmhxRm53NnJYbDZ3Y2RCT2YwNS1jM3Z6UWxLUmE4UGpsWHphS3Z6Ums4eTJpcTlNaVQwMGVJa0otcE9pX1NxWXVUZ01yYjlVdkJGVFU5VGJ0LSIsImlzc3VlZF9hdCI6MTQ1MjYwMzI5MCwidXNlcl9pZCI6IjExMDgxOTAxMjI1Mzk2OTkifQ"}}
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."UID" = :a1 AND ROWNUM <= 1   [["uid", "1108190122539699"]]
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "LOCATIONS" WHERE (user_id = 10117)[0m
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:54:55 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.3ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 11ms (Views: 7.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/v1/user/10117/most_traveled_period?year=2014" for ::1 at 2016-01-12 14:55:05 +0200
+Processing by API::V1::UsersController#get_most_traveled_period as HTML
+  Parameters: {"year"=>"2014", "user_id"=>"10117"}
+  [1m[36mSQL (1.6ms)[0m  [1mSELECT count(*) "Number", to_char(visited_at, 'MON') "Month" FROM LOCATIONS
+                 WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                 GROUP BY to_char(visited_at, 'MON')
+                 HAVING count(*) = (
+                  SELECT max(count(*)) FROM LOCATIONS
+                  WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                  GROUP BY to_char(visited_at, 'MM')
+                 )[0m
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 14:55:30 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.8ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:58:47 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 14ms (Views: 7.2ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:59:56 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (8.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 27ms (Views: 15.9ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 14:59:57 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.0ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 9.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/v1/user/undefined/locations" for ::1 at 2016-01-12 15:00:00 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"undefined"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:00:53 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (8.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 26ms (Views: 14.5ms | ActiveRecord: 8.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:01:27 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.9ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 15ms (Views: 10.6ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/user/10117/most_visited_places" for ::1 at 2016-01-12 15:01:45 +0200
+Processing by API::V1::UsersController#get_most_visited_places as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.2ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT count(*) "Visits", name
+                  FROM LOCATIONS
+                  WHERE user_id = 10117
+                  GROUP BY NAME
+                  HAVING count(*) <= (
+                    SELECT max(count(*))
+                    FROM LOCATIONS
+                    WHERE USER_ID = 10117
+                    GROUP BY NAME
+                  )
+                  ORDER BY 1 DESC
+                ) WHERE ROWNUM <= 3[0m
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:02:31 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (5.9ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 5.8ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:02:37 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (4.3ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (0.9ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/v1/user/10117/most_visited_places" for ::1 at 2016-01-12 15:02:42 +0200
+Processing by API::V1::UsersController#get_most_visited_places as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.4ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT count(*) "Visits", name
+                  FROM LOCATIONS
+                  WHERE user_id = 10117
+                  GROUP BY NAME
+                  HAVING count(*) <= (
+                    SELECT max(count(*))
+                    FROM LOCATIONS
+                    WHERE USER_ID = 10117
+                    GROUP BY NAME
+                  )
+                  ORDER BY 1 DESC
+                ) WHERE ROWNUM <= 3[0m
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:03:12 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:04:35 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.2ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:04:42 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:04:44 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 12ms (Views: 7.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:04:46 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (7.3ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.3ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:05:07 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.8ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:05:11 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.7ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 8ms (Views: 5.3ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:06:02 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.9ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 10ms (Views: 5.6ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:06:11 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:06:46 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 17ms (Views: 11.4ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:06:46 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.9ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/user/10117/most_traveled_period?year=2014" for ::1 at 2016-01-12 15:07:04 +0200
+Processing by API::V1::UsersController#get_most_traveled_period as HTML
+  Parameters: {"year"=>"2014", "user_id"=>"10117"}
+  [1m[35mSQL (7.2ms)[0m  SELECT count(*) "Number", to_char(visited_at, 'MON') "Month" FROM LOCATIONS
+                 WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                 GROUP BY to_char(visited_at, 'MON')
+                 HAVING count(*) = (
+                  SELECT max(count(*)) FROM LOCATIONS
+                  WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                  GROUP BY to_char(visited_at, 'MM')
+                 )
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:07:09 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.6ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:09:34 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.4ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 11ms (Views: 7.5ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:09:37 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.3ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 11ms (Views: 6.5ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:09:46 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.0ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:10:33 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 10ms (Views: 6.2ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:10:34 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (4.4ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 7.6ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:10:45 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.1ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:10:47 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (7.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 17ms (Views: 8.0ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:13:19 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.3ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 11ms (Views: 5.9ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:13:23 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (1.9ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.7ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:14:20 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (2.3ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (2.7ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:14:24 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.6ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 9ms (Views: 6.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:14:25 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (0.9ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:14:32 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.1ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:14:34 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (0.9ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:17:18 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (6.3ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 19ms (Views: 11.6ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/v1/user/10117/most_traveled_period?year=2014" for ::1 at 2016-01-12 15:17:24 +0200
+Processing by API::V1::UsersController#get_most_traveled_period as HTML
+  Parameters: {"year"=>"2014", "user_id"=>"10117"}
+  [1m[35mSQL (2.0ms)[0m  SELECT count(*) "Number", to_char(visited_at, 'MON') "Month" FROM LOCATIONS
+                 WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                 GROUP BY to_char(visited_at, 'MON')
+                 HAVING count(*) = (
+                  SELECT max(count(*)) FROM LOCATIONS
+                  WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                  GROUP BY to_char(visited_at, 'MM')
+                 )
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:17:59 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (4.5ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 81ms (Views: 75.1ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:18:03 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.7ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 12ms (Views: 7.8ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:18:05 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.0ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:19:09 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.9ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:19:15 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1   [["id", 10117]]
+  [1m[36mSQL (1.0ms)[0m  [1mSELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:20:19 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.0ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:20:21 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.0ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:26:06 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (3.6ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 12ms (Views: 7.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/" for ::1 at 2016-01-12 15:26:24 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (4.2ms)
+Completed 200 OK in 8ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/v1/user/data" for ::1 at 2016-01-12 15:26:29 +0200
+
+ActionController::RoutingError (uninitialized constant API::V1::UserController):
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:263:in `const_get'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:263:in `block in constantize'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.5) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:72:in `controller_reference'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:62:in `controller'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:41:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/Dragos/.rvm/rubies/ruby-2.1.6/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (4.4ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/Dragos/.rvm/gems/ruby-2.1.6/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (30.7ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:26:32 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (2.3ms)[0m  SELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:26:34 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.8ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 21ms (Views: 17.5ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/v1/user/10117/data" for ::1 at 2016-01-12 15:26:39 +0200
+Processing by API::V1::UsersController#get_data as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[35mSQL (3.0ms)[0m  SELECT uid, name, oauth_token, oauth_expires_at
+                 FROM USERS
+                 WHERE (id = 10117)
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/v1/user/undefined/locations" for ::1 at 2016-01-12 15:35:06 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"undefined"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/v1/user/login" for ::1 at 2016-01-12 15:35:06 +0200
+Processing by API::V1::UsersController#login as */*
+  Parameters: {"userParams"=>{"email"=>"geantaudragos@gmail.com", "name"=>"Dragoș Geantău", "hometown"=>{"id"=>"101882609853782", "name"=>"Iasi, Romania"}, "id"=>"1108190122539699"}, "loginParams"=>{"accessToken"=>"CAACSaHZAqQMgBAKMpydt2ggx3ZAOaG2pU57mQGdZCbTwqrlfg1MfLZAtyxEhp0fdIZBXtwLivpZCJTjNxQgl5jXou5WAmYnV0kqkOHs4bH2ydjD3BnRE2ZADU9N1Ez21ZCMI7VZC4RX4Otltlyb5FNU19eRZAoEx3GVeca8JXDHDx03wGRGH2fB488hePKMWrJXxtxyjh0RuCDrkCbBvhmJ3ij", "userID"=>"1108190122539699", "expiresIn"=>"5618", "signedRequest"=>"F5D0-Cz5y018orpL4G_PLkj-w4j0x9sL_XoiW66_3ow.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUMtbElfNzBKU0hoSlZiSHZ2cFpwV1RqOElNYmFmaFdjS0RsbURtODgxRUVtTVZWSjR4U2wzcTJRRzJVVk9PbVVTUi1iN1ZtSHJwNTFOdmxmcU9yb1laUnFqZUNHVDZTVmFVSFppZWZaRUV2cElvejRhd0xrendNTDFyVkUwSWN1ZEsxR2JuWjM4bjJNUGN1Z0FUVERFY3pyRzc2YlNHd3BHSFRLaDRQY2ZoRnBqdUZSYjZwS1dIT3JkamtaVVpZMVBQN0lDVFZpenBEd0lmbWsyLWl4M05SUzN1ZkdYSjJWaGRJalJlZHp0bU5DSFZ4emx2TnJKeWRDaVlRb24taDFyMHhONlFFOFUyb2Q0am05aHFxX21kVnhuRE9NcWIydDNTUzU1bmEwZEtzbnV6Sml5NTFYcnc5X2hWWjFfeG8xNjh0dU1UckZMRXNlS040cWNjcEJDOSIsImlzc3VlZF9hdCI6MTQ1MjYwNTE4MSwidXNlcl9pZCI6IjExMDgxOTAxMjI1Mzk2OTkifQ"}}
+  [1m[36mUser Load (2.1ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."UID" = :a1 AND ROWNUM <= 1 [0m  [["uid", "1108190122539699"]]
+  [1m[35m (1.4ms)[0m  SELECT COUNT(*) FROM "LOCATIONS" WHERE (user_id = 10117)
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/v1/user/10117/locations" for ::1 at 2016-01-12 15:35:15 +0200
+Processing by API::V1::UsersController#get_locations as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mSQL (2.2ms)[0m  [1mSELECT name, longitude, latitude, city
+                 FROM LOCATIONS
+                 WHERE (user_id = 10117)[0m
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/v1/user/10117/most_traveled_period?year=2014" for ::1 at 2016-01-12 15:35:39 +0200
+Processing by API::V1::UsersController#get_most_traveled_period as HTML
+  Parameters: {"year"=>"2014", "user_id"=>"10117"}
+  [1m[35mSQL (1.2ms)[0m  SELECT count(*) "Number", to_char(visited_at, 'MON') "Month" FROM LOCATIONS
+                 WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                 GROUP BY to_char(visited_at, 'MON')
+                 HAVING count(*) = (
+                  SELECT max(count(*)) FROM LOCATIONS
+                  WHERE to_char(visited_at, 'YYYY') = '2014' AND user_id = 10117
+                  GROUP BY to_char(visited_at, 'MM')
+                 )
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/v1/user/10117/most_visited_cities" for ::1 at 2016-01-12 15:35:47 +0200
+Processing by API::V1::UsersController#get_most_visited_cities as HTML
+  Parameters: {"user_id"=>"10117"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "USERS".* FROM "USERS" WHERE "USERS"."ID" = :a1 AND ROWNUM <= 1 [0m  [["id", 10117]]
+  [1m[35mSQL (1.1ms)[0m  SELECT * FROM (
+                  SELECT DISTINCT CITY
+                  FROM LOCATIONS
+                  WHERE USER_ID = 10117 AND CITY <>  'Iasi'
+                  GROUP BY CITY
+                  HAVING count(*) <= (
+                         SELECT max(count(*))
+                         FROM LOCATIONS
+                         WHERE USER_ID = 10117 AND CITY <> 'Iasi'
+                         GROUP BY CITY
+                         )
+                  ORDER BY 1 DESC
+                )
+                WHERE ROWNUM <= 3
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.9ms)

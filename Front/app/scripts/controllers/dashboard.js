@@ -12,7 +12,8 @@ angular.module('travelDiary')
       var vm = this;
       vm.locations = [];
       var locations = [];
-      vm.logout = UserService.logout();
+
+      vm.logout = function() { UserService.logout(); }
       vm.userInfo = AuthenticationService.getUserInfo();
       vm.getLocationsOnSpecificDate = function () { vm.mostVisitedMonth = !vm.mostVisitedMonth; };
       vm.getMostVisitedCities = function () {
@@ -21,9 +22,27 @@ angular.module('travelDiary')
           params : {},
           location : 'cities'
         };
-        UserService.getData(request);
+        UserService.getData(request)
+          .then(function(response){
+            vm.cities = response.data;
+          });
       };
-      vm.getMostVisitedPlaces = function () { vm.mostVisitedPlaces = !vm.mostVisitedPlaces; };
+      console.log(vm.cities);
+
+      vm.getMostVisitedPlaces = function () {
+        vm.mostVisitedPlaces = !vm.mostVisitedPlaces;
+
+        var request = {
+          params : {},
+          location : 'places'
+        };
+
+        UserService.getData(request)
+          .then(function(response){
+            vm.places = response.data;
+            console.log(vm.places);
+          });
+      };
       /**
        * Toggle modal method
        */

@@ -12,7 +12,6 @@
       controller : 'MonthModalController',
       controllerAs : 'monthModal',
       link : function(scope, el, attrs, ctrl, transclude) {
-        el.find('.aboutTheApp').append(transclude());
 
 
       }

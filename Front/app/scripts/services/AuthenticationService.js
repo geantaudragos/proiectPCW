@@ -4,57 +4,45 @@
   angular.module('travelDiary')
     .factory('AuthenticationService', AuthenticationService);
 
-  AuthenticationService.$inject = ['$http', '$q', '$window', 'Facebook'];
+  AuthenticationService.$inject = ['$http', '$q', '$window', 'Facebook', '$location'];
 
-  function AuthenticationService($http, $q, $window, Facebook) {
-      var userInfo;
+  function AuthenticationService($http, $q, $window, Facebook, $location) {
+      var userInfo = {};
 
       function facebookLogin() {
         var deferred = $q.defer();
 
-        //Facebook.login(function (response) {
-        //  var loginParams = response.authResponse;
-        //  var accessToken = loginParams.accessToken;
-        //  Facebook.api(
-        //    '/me?fields=email,name,hometown',
-        //    'GET',
-        //    {
-        //      access_token: accessToken
-        //    },
-        //    function (response) {
-        //      var userParams = response;
-        //
-        //      $.post("http://api.localhost:3000/v1/user/login", {
-        //        'userParams': userParams,
-        //        'loginParams': loginParams
-        //      }, function (data) {
-        //        var info = angular.fromJson(data);
-        //
-        //        userInfo = {
-        //          name: info.name,
-        //          id: info.id,
-        //          noOfLocations: info.locations
-        //        };
-        //        $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-        //        deferred.resolve(userInfo);
-        //      });
-        //    }
-        //  );
-        //});
+        Facebook.login(function (response) {
+          var loginParams = response.authResponse;
+          var accessToken = loginParams.accessToken;
+          Facebook.api(
+            '/me?fields=email,name,hometown',
+            'GET',
+            {
+              access_token: accessToken
+            },
+            function (response) {
+              var userParams = response;
 
-          /**
-           * function for logging in
-           */
-          userInfo = {
-            name: 'New User',
-            id: 1000,
-            noOfLocations: 55
-          };
+              $.post("http://api.localhost:3000/v1/user/login", {
+                'userParams': userParams,
+                'loginParams': loginParams
+              }, function (data) {
+                var info = angular.fromJson(data);
+
+                userInfo = {
+                  name: info.name,
+                  id: info.id,
+                  noOfLocations: info.locations
+                };
+                $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+                deferred.resolve(userInfo);
+              });
+            }
+          );
+        });
 
         $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-        deferred.resolve(userInfo);
-
-            // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
         deferred.resolve(userInfo);
         return deferred.promise;
       }
@@ -66,23 +54,20 @@
       function logout() {
         var deferred = $q.defer();
 
-        //$http({
-        //  method: "POST",
-        //  url: "/api/logout",
-        //  headers: {
-        //    "access_token": userInfo.accessToken
-        //  }
-        //}).then(function (result) {
-        //  userInfo = null;
-        //  $window.sessionStorage["userInfo"] = null;
-        //  deferred.resolve(result);
-        //}, function (error) {
-        //  deferred.reject(error);
-        //});
-
-        userInfo = null;
-        $window.sessionStorage["userInfo"] = null;
-
+        Facebook.api({
+          method: "POST",
+          url: "/api/logout",
+          headers: {
+            "access_token": userInfo.accessToken
+          }
+        }).then(function (result) {
+          userInfo = null;
+          $window.sessionStorage["userInfo"] = null;
+          deferred.resolve(result);
+        }, function (error) {
+          deferred.reject(error);
+        });
+        $location.path('/');
         return deferred.promise;
       }
 

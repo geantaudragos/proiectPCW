@@ -4,7 +4,7 @@
   angular.module('travelDiary')
     .service('RequestService', RequestService);
 
-  RequestService.$inject = ['$http'];
+  RequestService.$inject = ['$http', 'AuthenticationService'];
 
   /**
    * @name RequestService
@@ -13,27 +13,31 @@
    * @returns {Request}
    * @constructor
    */
-  function RequestService ($http) {
+  function RequestService ($http, AuthenticationService) {
 
     var Request = function() {
 
       //Convenience helpers
       //Add custom endpoints
       this.endpoints = {
-        user  : 'user',
-        login : 'user/login',
-        locations : 'locations.json',
-        month : 'month.json'
+        login : '/login',
+        locations : '/locations',
+        month : '/most_traveled_period',
+        cities: '/most_visited_cities',
+        places: '/most_visited_places',
+        photos: '/photos'
       };
 
-      //this.apiBase = 'http://api.localhost:3000/v1/';
-      //this.apiBase = 'https://spreadsheets.google.com/feeds/list/1yfhNvvL53M0IoipZUn4cwReUe68XiBklztZX0NhiQHM/1/public/basic?alt=json-in-script&callback=JSON_CALLBACK';
-      this.apiBase = '../';
+      var userId = AuthenticationService.getUserInfo().id;
+
+      this.apiBase = 'http://api.localhost:3000/v1/user/';
+
       this.make = function(options) {
         var url = this.apiBase;
 
         //resolve URL
         if (this.endpoints.hasOwnProperty(options.endpoint)) {
+          url += userId;
           url += this.endpoints[options.endpoint];
 
         }

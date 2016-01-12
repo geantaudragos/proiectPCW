@@ -14,12 +14,13 @@
       FacebookLogin : FacebookLogin,
       logout : logout,
       getLocations : getLocations,
-      getData : getData,
+      getData : getData
     };
 
     function FacebookLogin() {
       AuthenticationService.facebookLogin()
         .then(function (result) {
+          console.log(result);
             userInfo = result;
             $location.path("/dashboard");
           },
@@ -61,7 +62,6 @@
         $window.alert("Invalid credentials");
         console.log("error");
       });
-      //'http://api.localhost:3000/v1/user/' + userInfo.id + '/most_traveled_period', params,
       return deferred.promise;
     }
 
