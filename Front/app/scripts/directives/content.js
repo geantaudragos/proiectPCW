@@ -11,8 +11,7 @@
       replace     : true,
       templateUrl : '../../views/content.html',
       link        : function(scope, el, attrs, ctrl, transclude) {
-        el.find('.aboutTheApp').append(transclude());
-
+        el.find('.result').append(transclude());
       }
     };
   }

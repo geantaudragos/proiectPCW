@@ -1,0 +1,27 @@
+[
+  {
+    "name":"Downtown Chicago",
+    "longitude":"-87.62926596801",
+    "latitude":"41.880896451634",
+    "city":"Chicago"
+  },
+
+  {
+    "name":"Aeroportul International Henri Coanda -Salonul Prezidential",
+    "longitude":"26.078996115522",
+    "latitude":"44.570458410562",
+    "city":null
+  },
+  {
+    "name":"Hotel International Iasi",
+    "longitude":"27.586861990896",
+    "latitude":"47.154808768073",
+    "city":"Iasi"
+  },
+  {
+    "name":"Master Pub Tudor",
+    "longitude":"27.601702655488",
+    "latitude":"47.155249999935",
+    "city":"Iasi"
+  }
+]

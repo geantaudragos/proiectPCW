@@ -1,78 +1,103 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('travelDiary')
-  .factory('AuthenticationService', function($http, $q, $window, Facebook){
-    var userInfo;
+  angular.module('travelDiary')
+    .factory('AuthenticationService', AuthenticationService);
 
-    function facebookLogin() {
-      var deferred = $q.defer();
+  AuthenticationService.$inject = ['$http', '$q', '$window', 'Facebook'];
 
-      Facebook.login(function(response) {
-        var loginParams = response.authResponse;
-        var accessToken = loginParams.accessToken;
-        Facebook.api(
-          '/me?fields=email,name,hometown',
-          'GET',
-          {
-            access_token:accessToken
-          },
-          function ( response ) {
-            var userParams = response;
+  function AuthenticationService($http, $q, $window, Facebook) {
+      var userInfo;
 
-            $.post("http://api.localhost:3000/v1/user/login", {'userParams':userParams, 'loginParams':loginParams}, function(data){
-              var info = angular.fromJson(data);
+      function facebookLogin() {
+        var deferred = $q.defer();
 
-              userInfo = {
-                name  : info.name,
-                id    : info.id,
-                noOfLocations : info.locations
-              };
-              $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-              deferred.resolve(userInfo);
-            });
-          }
-        );
-      });
+        //Facebook.login(function (response) {
+        //  var loginParams = response.authResponse;
+        //  var accessToken = loginParams.accessToken;
+        //  Facebook.api(
+        //    '/me?fields=email,name,hometown',
+        //    'GET',
+        //    {
+        //      access_token: accessToken
+        //    },
+        //    function (response) {
+        //      var userParams = response;
+        //
+        //      $.post("http://api.localhost:3000/v1/user/login", {
+        //        'userParams': userParams,
+        //        'loginParams': loginParams
+        //      }, function (data) {
+        //        var info = angular.fromJson(data);
+        //
+        //        userInfo = {
+        //          name: info.name,
+        //          id: info.id,
+        //          noOfLocations: info.locations
+        //        };
+        //        $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+        //        deferred.resolve(userInfo);
+        //      });
+        //    }
+        //  );
+        //});
 
-     // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
-      deferred.resolve(userInfo);
-      return deferred.promise;
-    }
+          /**
+           * function for logging in
+           */
+          userInfo = {
+            name: 'New User',
+            id: 1000,
+            noOfLocations: 55
+          };
 
-    function getUserInfo() {
-      return userInfo;
-    }
+        $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+        deferred.resolve(userInfo);
 
-    function logout() {
-      var deferred = $q.defer();
+            // $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+        deferred.resolve(userInfo);
+        return deferred.promise;
+      }
 
-      $http({
-        method: "POST",
-        url: "/api/logout",
-        headers: {
-          "access_token": userInfo.accessToken
-        }
-      }).then(function (result) {
+      function getUserInfo() {
+        return userInfo;
+      }
+
+      function logout() {
+        var deferred = $q.defer();
+
+        //$http({
+        //  method: "POST",
+        //  url: "/api/logout",
+        //  headers: {
+        //    "access_token": userInfo.accessToken
+        //  }
+        //}).then(function (result) {
+        //  userInfo = null;
+        //  $window.sessionStorage["userInfo"] = null;
+        //  deferred.resolve(result);
+        //}, function (error) {
+        //  deferred.reject(error);
+        //});
+
         userInfo = null;
         $window.sessionStorage["userInfo"] = null;
-        deferred.resolve(result);
-      }, function (error) {
-        deferred.reject(error);
-      });
 
-      return deferred.promise;
-    }
-
-    function init() {
-      if ($window.sessionStorage["userInfo"]) {
-        userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+        return deferred.promise;
       }
-    }
-    init();
 
-    return {
-      facebookLogin: facebookLogin,
-      getUserInfo: getUserInfo,
-      logout: logout
-    };
-  });
+      function init() {
+        if ($window.sessionStorage["userInfo"]) {
+          userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+        }
+      }
+
+      init();
+
+      return {
+        facebookLogin: facebookLogin,
+        getUserInfo: getUserInfo,
+        logout: logout
+      };
+    }
+})();

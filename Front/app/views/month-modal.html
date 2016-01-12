@@ -1,0 +1,8 @@
+<div class="details">
+<input id='newYear' class='form-control' type='number' ng-model='monthModal.year' placeholder='Type in the year' ng-keypress="monthModal.checkForEnter($event)">
+<div class="result" ng-show="monthModal.showResult">
+  <p style="margin-top: 20px">In {{monthModal.year}} your most travelled month has been:</p>
+  <h1>{{monthModal.month | date : 'MMM'}}</h1>
+  <p>During that time you have visited {{monthModal.number}} different places</p>
+</div>
+</div>

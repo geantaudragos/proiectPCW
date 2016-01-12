@@ -23,13 +23,13 @@
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li>
-                <a ng-click="getMostVisitedPlaces()">Most Visited Places</a>
+                <a ng-click="dashboard.getMostVisitedPlaces()">Most Visited Places</a>
               </li>
               <li>
-                <a ng-click="getLocationsOnSpecificDate()">Most Travelled Month</a>
+                <a ng-click="dashboard.getLocationsOnSpecificDate()">Most Travelled Month</a>
               </li>
               <li>
-                <a ng-click="getMostVisitedCities()">Most Visited Cities</a>
+                <a ng-click="dashboard.getMostVisitedCities()">Most Visited Cities</a>
               </li>
             </ul>
           </li>
@@ -37,7 +37,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-extended="false">{{userName}}</a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-extended="false">{{dashboard.userInfo.name}}
+              <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li>
                 <a href="">Profile</a>
@@ -46,7 +47,7 @@
                 <a href="">Settings</a>
               </li>
               <li>
-                <a href="">Logout</a>
+                <a ng-click="dashboard.logout()">Logout</a>
               </li>
             </ul>
           </li>
@@ -70,6 +71,20 @@
   <!--das-->
   <!--d-->
   <!--</modal>-->
+
+<modal title="Most Visited Places" visible="dashboard.mostVisitedPlaces">
+
+</modal>
+
+<modal title="Most Travelled Month" visible="dashboard.mostVisitedMonth">
+<month-modal>
+
+</month-modal>
+</modal>
+
+<modal title="Most Visited Cities" visible="dashboard.mostVisitedCities">
+
+</modal>
 
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
